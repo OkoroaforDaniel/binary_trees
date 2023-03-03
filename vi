@@ -1,0 +1,62 @@
+Beta Try the new code view
+binary_trees/8-binary_tree_postorder.c
+@OluwabukolaU
+OluwabukolaU initial commit
+Latest commit dfa71c4 yesterday
+ History
+ 1 contributor
+16 lines (15 sloc)  439 Bytes
+
+#include "binary_trees.h"
+
+/**
+ * binary_tree_postorder - Traverses a binary tree using post-order traversal.
+ * @tree: A pointer to the root node of the tree to traverse.
+ * @func: A pointer to a function to call for each node.
+ */
+void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int))
+{
+	if (tree && func)
+	{
+		binary_tree_postorder(tree->left, func);
+		binary_tree_postorder(tree->right, func);
+		func(tree->n);
+	}
+
+}
+9-binary_tree_height.c9-binary_tree_heigh:wq
+#include "binary_trees.h"
+
+/**
+ * is_full_recursive - Checks if a binary tree is full recursively.
+ * @tree: A pointer to the root node of the tree to check.
+ *
+ * Return: If tree is not full, 0.
+ *         Otherwise, 1.
+ */
+int is_full_recursive(const binary_tree_t *tree)
+{
+	if (tree != NULL)
+	{
+		if ((tree->left != NULL && tree->right == NULL) ||
+		    (tree->left == NULL && tree->right != NULL) ||
+		    is_full_recursive(tree->left) == 0 ||
+		    is_full_recursive(tree->right) == 0)
+			return (0);
+	}
+	return (1);
+}
+
+/**
+ * binary_tree_is_full - Checks if a binary tree is full.
+ * @tree: A pointer to the root node of the tree to check.
+ *
+ * Return: If tree is NULL or is not full - 0.
+ *         Otherwise - 1.
+ */
+int binary_tree_is_full(const binary_tree_t *tree)
+{
+	if (tree == NULL)
+		return (0);
+	return (is_full_recursive(tree));
+}
